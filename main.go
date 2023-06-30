@@ -9,8 +9,7 @@ import (
 func main() {
 	http.HandleFunc("/echo", handlers.Echo)
 	http.HandleFunc("/sendall", func(w http.ResponseWriter, req *http.Request) {
-		msg := req.URL.Query().Get("msg")
-		core.ClientMap.SendAll(msg)
+		core.ClientMap.SendAllPods()
 		w.Write([]byte("ok"))
 	})
 	err := http.ListenAndServe(":8080", nil)
